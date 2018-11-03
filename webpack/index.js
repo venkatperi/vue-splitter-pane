@@ -19,18 +19,23 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+const Config = require( 'webpack-chain' )
 
-const x = ( config ) => {
-  config.module
-    .rule( 'ts' )
-    .test( /\.tsx?$/ )
-    .exclude.add( /node_modules/ ).end()
-    .use( 'ts' )
-    .loader( 'ts-loader' )
-    .when( config.module.rules.has( 'vue' ),
-      x => x.options( { appendTsSuffixTo: [/\.vue$/] } ) )
+function processModules( modules, init ) {
+  const config = new Config()
+  init( config )
+  modules.forEach( x => require( `./${x}` )( config ) );
+  return config
 }
 
-x.__deps = ['typescript', 'ts-loader']
+function processVariants( variants, modules, init ) {
+  return variants
+    .map( x => {
+      let c = processModules( modules, init )
+      require( `./${x}` )( c )
+      return c
+    } )
+    .map( x => x.toConfig() )
+}
 
-module.exports = x
+module.exports = processVariants

@@ -19,9 +19,9 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
 
-module.exports = ( config ) => {
+let x = ( config ) => {
+  const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
   config
     .plugin( 'vueLoader' )
     .use( VueLoaderPlugin )
@@ -36,3 +36,6 @@ module.exports = ( config ) => {
   config.resolve.alias
     .set( 'vue$', 'vue/dist/vue.esm.js' )
 }
+
+x.__deps = ['vue-loader', 'vue-template-compiler']
+module.exports = x

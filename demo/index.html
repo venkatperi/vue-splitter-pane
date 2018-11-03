@@ -10,10 +10,31 @@
   body {
     margin: 0;
     background: #ddd;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
+  .splitter-pane {
+    font-size: 50px;
+    text-align: center;
+  }
+  .rate {
+    display: inline-block;
+    width: 200px;
+  }
+
+  #stats {
+    font-size: 14px;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    background: #888;
+    color: white;
+    padding: 0 20px;
   }
 </style>
 <body>
 <script src="https://unpkg.com/vue@2.2.6"></script>
+<script src="https://unpkg.com/average-rate@1.0.3"></script>
 <script src="../dist/vue-splitter-pane.min.js"></script>
 <a href="" class="github-corner" aria-label="View source on Github">
   <svg width="80"
@@ -34,25 +55,40 @@
 <div id="app" class="components-container">
 
   <template>
+    <div id="stats">
+      <span class="rate">Rate: {{ rate1.toFixed(3) }}</span>
+      <span class="rate">With Throttle: {{ rate2.toFixed(3) }}</span>
+    </div>
 
-    <splitter-pane v-on:resize="resize" split="vertical">
+    <splitter-pane split="vertical">
       <template slot="one"> A</template>
 
       <template slot="two">
 
         <splitter-pane split="horizontal">
 
-          <template slot="one"> B</template>
 
-          <template slot="two">
-            <splitter-pane v-on:resize="resize"
+          <template slot="one">
+            <splitter-pane @resize="resize1"
                            split="vertical"
-                           :throttle="1000"
                            :initial-percent="30">
 
-              <template slot="one"> C</template>
+              <template slot="one"> B </template>
 
-              <template slot="two"> D</template>
+              <template slot="two"> C</template>
+
+            </splitter-pane>
+          </template>
+
+          <template slot="two">
+            <splitter-pane v-on:resize="resize2"
+                           split="vertical"
+                           :throttle="20"
+                           :initial-percent="30">
+
+              <template slot="one"> D</template>
+
+              <template slot="two"> E</template>
 
             </splitter-pane>
           </template>
@@ -69,9 +105,22 @@
 <script>
   var Main = {
     name: 'test',
+    data: function () {
+      return {
+        rate1: 0,
+        rate2: 0,
+        mar1: new MovingAverageWithRate( { windowSize: 5 } ),
+        mar2: new MovingAverageWithRate( { windowSize: 5 } ),
+      }
+    },
     methods: {
-      resize() {
-        console.log( 'resize' )
+      resize1() {
+        let res = this.mar1.add()
+        this.rate1 = res[1]
+      },
+      resize2() {
+        let res = this.mar2.add()
+        this.rate2 = res[1]
       },
     },
   };

@@ -1,3 +1,26 @@
+<!--
+  // Copyright 2018, Venkat Peri.
+  //
+  // Permission is hereby granted, free of charge, to any person obtaining a
+  // copy of this software and associated documentation files (the
+  // "Software"), to deal in the Software without restriction, including
+  // without limitation the rights to use, copy, modify, merge, publish,
+  // distribute, sublicense, and/or sell copies of the Software, and to permit
+  // persons to whom the Software is furnished to do so, subject to the
+  // following conditions:
+  //
+  // The above copyright notice and this permission notice shall be included
+  // in all copies or substantial portions of the Software.
+  //
+  // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  // OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  // NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+  // USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
 <!--suppress TypeScriptValidateTypes -->
 <template>
   <div :style="{ cursor, userSelect}"
@@ -11,7 +34,7 @@
           :xClass="xClass"
           :split="split"
           :style="{ [type]: `${percent}%`}">
-      <slot name="one" />
+      <slot :name="slotOne" />
     </pane>
 
     <resize-handle :xClass="xClass"
@@ -24,7 +47,7 @@
           :xClass="xClass"
           :split="split"
           :style="{ [type]: `${100-percent}%`}">
-      <slot name="two" />
+      <slot :name="slotTwo" />
     </pane>
 
   </div>
@@ -48,7 +71,7 @@
     })
     export default class SplitterPane extends Vue {
 
-        active: boolean = false
+        dragging: boolean = false
 
         hasMoved: boolean = false
 
@@ -106,26 +129,33 @@
             this.updateSizes()
         }
 
-        @Watch('throttle')
-        onThrottleChanged() {
-            this.throttleChanged()
+
+        @Watch('initialPercent')
+        initialPercentChanged() {
+            this.percent = this.initialPercent
         }
 
-        throttleChanged() {
+        @Watch('throttle')
+        onThrottleChanged() {
+            this.updateHandler()
+        }
+
+        updateHandler() {
             let self = this
-            this.handler = this.throttle < 0
-                           ? this.doResize.bind(this) :
-                           debounce((e: MouseEvent) => self.doResize(e),
-                               this.throttle, {
-                                   leading: true,
-                                   trailing: true,
-                                   maxWait: this.throttle
-                               })
+            this.handler =
+                this.throttle < 0
+                ? this.doResize.bind(this) :
+                debounce((e: MouseEvent) => self.doResize(e),
+                    this.throttle, {
+                        leading: true,
+                        trailing: true,
+                        maxWait: this.throttle
+                    })
         }
 
         @Lifecycle
         created() {
-            this.throttleChanged()
+            this.updateHandler()
         }
 
         @Lifecycle
@@ -135,15 +165,23 @@
         }
 
         get userSelect(): string {
-            return this.active ? 'none' : ''
+            return this.dragging ? 'none' : ''
         }
 
         get cursor(): string {
-            return this.active ? 'col-resize' : ''
+            return this.dragging ? 'col-resize' : ''
         }
 
         get type(): StyleType {
             return this.split === 'vertical' ? 'width' : 'height'
+        }
+
+        get slotOne(): string {
+            return this.split === 'vertical' ? 'left' : 'top'
+        }
+
+        get slotTwo(): string {
+            return this.split === 'vertical' ? 'right' : 'bottom'
         }
 
         get isVertical(): boolean {
@@ -166,13 +204,13 @@
         }
 
         onMouseDown() {
-            this.active = true
+            this.dragging = true
             this.hasMoved = false
         }
 
 
         onMouseUp() {
-            this.active = false
+            this.dragging = false
         }
 
         onMouseMove(e: MouseEvent) {
@@ -181,13 +219,12 @@
 
         doResize(e: MouseEvent) {
             if (e.buttons === 0 || e.which === 0) {
-                this.active = false
+                this.dragging = false
             }
 
-            if (this.active &&
+            if (this.dragging &&
                 e.currentTarget &&
                 e.currentTarget instanceof HTMLElement) {
-                let offset = 0
                 let target: HTMLElement = e.currentTarget
 
                 const currentPage = this.isVertical
@@ -197,27 +234,18 @@
                                      ? e.currentTarget.offsetWidth
                                      : e.currentTarget.offsetHeight
 
-                while (target) {
-                    offset += this.isVertical
-                              ? target.offsetLeft
-                              : target.offsetTop
-                    if (!(target.offsetParent && target.offsetParent
-                        instanceof HTMLElement)) {
-                        break
-                    }
-                    target = target.offsetParent
-                }
-
+                // see: https://msdn.microsoft.com/en-us/library/hh781509(VS.85).aspx
+                let rect = target.getBoundingClientRect()
+                let offset = this.isVertical
+                             ? window.pageXOffset + rect.left
+                             : window.pageYOffset + rect.top
 
                 let diff = currentPage - offset
                 const percent = Math.floor(
                     (diff / targetOffset) * 10000) / 100
 
-                if (percent > this.minPercent &&
-                    percent < this.maxPercent) {
-                    this.percent = percent
-                }
-
+                this.percent = Math.max(this.minPercent,
+                    Math.min(percent, this.maxPercent))
                 this.hasMoved = true
             }
         }

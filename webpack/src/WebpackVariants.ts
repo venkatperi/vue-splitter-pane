@@ -19,18 +19,29 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import * as webpack from "webpack"
+import {
+    BaseWebpackConfig,
+    ModuleList, VariantConfig, VariantList
+} from "./BaseWebpackConfig"
 
-const x = ( config ) => {
-  config.module
-    .rule( 'ts' )
-    .test( /\.tsx?$/ )
-    .exclude.add( /node_modules/ ).end()
-    .use( 'ts' )
-    .loader( 'ts-loader' )
-    .when( config.module.rules.has( 'vue' ),
-      x => x.options( { appendTsSuffixTo: [/\.vue$/] } ) )
+export class WebpackVariants<T extends BaseWebpackConfig> {
+    configs: VariantConfig = {}
+
+    constructor(private TCreator: { new(m: ModuleList): T; },
+        public variants: VariantList,
+        public modules: ModuleList) {
+        this.init()
+    }
+
+    get webpackConfig(): Array<webpack.Configuration> {
+        return Object.keys(this.configs)
+                     .map((c) => this.configs[c].webpackConfig)
+    }
+
+    init() {
+        for (let v of this.variants) {
+            this.configs[v] = new this.TCreator(this.modules)
+        }
+    }
 }
-
-x.__deps = ['typescript', 'ts-loader']
-
-module.exports = x

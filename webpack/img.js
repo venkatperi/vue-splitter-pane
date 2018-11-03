@@ -20,10 +20,13 @@
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-module.exports = config =>
+const x = config =>
   config.module
     .rule( 'media' )
     .test( /\.(png|jpg|gif|svg)$/ )
     .use( 'file' )
     .loader( 'file-loader' )
     .options( { name: '[name].[ext]?[hash]' } )
+
+x.__deps = ['file-loader']
+module.exports = x

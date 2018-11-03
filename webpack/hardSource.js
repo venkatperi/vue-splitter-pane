@@ -19,9 +19,14 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const HardSourceWebpackPlugin = require( 'hard-source-webpack-plugin' );
 
-module.exports = config =>
+const x = config => {
+  const HardSourceWebpackPlugin = require( 'hard-source-webpack-plugin' );
   config
     .plugin( 'hardSource' )
     .use( HardSourceWebpackPlugin )
+}
+
+x.__deps = ['hard-source-webpack-plugin']
+
+module.exports = x

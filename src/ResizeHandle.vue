@@ -28,7 +28,7 @@
 
   $handle-size: 5;
   $handle-half-size: floor($handle-size/2) + 0px;
-  $border-color: solid rgba(255, 255, 255, 0);
+  $border-color: rgba(255, 255, 255, 0);
 
   .splitter-pane-handle {
     -moz-box-sizing: border-box;

@@ -19,8 +19,11 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module.exports = config =>
+const x = config =>
   config.devServer
     .historyApiFallback( true )
     .noInfo( true )
+
+x.__deps = ['webpack-dev-server']
+module.exports = x
 

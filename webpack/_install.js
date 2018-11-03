@@ -19,18 +19,32 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+const npm = require( 'npm-programmatic' )
+const path = require( 'path' );
+const fs = require( 'fs' );
 
-const x = ( config ) => {
-  config.module
-    .rule( 'ts' )
-    .test( /\.tsx?$/ )
-    .exclude.add( /node_modules/ ).end()
-    .use( 'ts' )
-    .loader( 'ts-loader' )
-    .when( config.module.rules.has( 'vue' ),
-      x => x.options( { appendTsSuffixTo: [/\.vue$/] } ) )
+function installDeps( modules ) {
+  let deps = ['webpack', 'webpack-cli', 'webpack-chain']
+  for ( let m of modules ) {
+    let c = require( `./${m}` )
+    if ( c.__deps )
+      deps.push( ...c.__deps )
+  }
+
+  console.log( deps )
+  return npm.install( deps, {
+    saveDev: true,
+    output: true,
+    cwd: path.resolve(__dirname, '..')
+  } )
 }
 
-x.__deps = ['typescript', 'ts-loader']
+async function run() {
+  fs.readdir( __dirname, ( err, files ) => {
+    const list = files.filter( file => !file.startsWith( '_' ) && file.endsWith( '.js' ) && file !== 'index.js' )
+    installDeps( list )
+  } )
+}
 
-module.exports = x
+
+module.exports = run()

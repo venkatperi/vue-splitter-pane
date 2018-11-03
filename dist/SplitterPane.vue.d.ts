@@ -1,7 +1,7 @@
 import Vue from 'vue';
 declare type StyleType = 'width' | 'height';
 export default class SplitterPane extends Vue {
-    active: boolean;
+    dragging: boolean;
     hasMoved: boolean;
     percent: Number;
     sizes: number[];
@@ -18,20 +18,22 @@ export default class SplitterPane extends Vue {
     xClass: string;
     sizesChanged(): void;
     percentChanged(): void;
+    initialPercentChanged(): void;
     onThrottleChanged(): void;
-    throttleChanged(): void;
+    updateHandler(): void;
     created(): void;
     mounted(): void;
     readonly userSelect: string;
     readonly cursor: string;
     readonly type: StyleType;
+    readonly slotOne: string;
+    readonly slotTwo: string;
     readonly isVertical: boolean;
     updateSizes(): void;
     onClick(): void;
     onMouseDown(): void;
     onMouseUp(): void;
     onMouseMove(e: MouseEvent): void;
-    doThrottle(e: MouseEvent): void;
     doResize(e: MouseEvent): void;
 }
 export {};

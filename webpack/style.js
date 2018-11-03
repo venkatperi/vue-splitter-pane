@@ -20,7 +20,7 @@
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-module.exports = config => {
+const x = config => {
   config.module
     .rule( 'style' )
     .test( /\.(sa|sc|c)ss$/ )
@@ -30,3 +30,8 @@ module.exports = config => {
   config.module.rule( 'style' ).use( 'css' ).loader( 'css-loader' )
   config.module.rule( 'style' ).use( 'sass' ).loader( 'sass-loader' )
 }
+
+x.__deps = ['vue-style-loader', 'css-loader', 'sass-loader',
+  'node-sass']
+
+module.exports = x

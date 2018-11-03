@@ -19,9 +19,14 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' )
 
-module.exports = config =>
-  config
-    .plugin( 'vueLoader' )
-    .use( BundleAnalyzerPlugin )
+const x = config => {
+  const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' )
+  return config
+    .plugin( 'analyze' )
+    .use( BundleAnalyzerPlugin );
+}
+
+x.__deps = ['webpack-bundle-analyzer']
+
+module.exports = x

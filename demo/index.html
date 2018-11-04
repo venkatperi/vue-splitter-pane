@@ -9,31 +9,37 @@
 
 <body>
 <script src="https://unpkg.com/vue@2.2.6"></script>
-<script src="https://unpkg.com/average-rate@1.0.3"></script>
+<!--<script src="https://unpkg.com/average-rate@1.0.3"></script>-->
 <script src="../dist/vue-splitter-pane.min.js"></script>
 
 <div id="app" class="components-container">
 
   <template>
-    <div id="stats">
-      <span class="rate">Rate: {{ rate1.toFixed(2) }}</span>
-      <span class="rate">With Throttle: {{ rate2.toFixed(2) }}</span>
-    </div>
+    <!--<div id="stats">-->
+      <!--<span class="rate">Rate: {{ rate1.toFixed(2) }}</span>-->
+      <!--<span class="rate">With Throttle: {{ rate2.toFixed(2) }}</span>-->
+    <!--</div>-->
 
-    <splitter-pane-v initial-size="40%">
+    <splitter-pane-v initial-size="40%" @resize="resizeA">
       <template slot="left">
         <div class="pane-outer">
-          <div class="pane">A</div>
+          <div class="pane">
+            <div>A</div>
+            <div class="size">{{ sizeA }}</div>
+          </div>
         </div>
       </template>
       <template slot="right">
         <splitter-pane-h>
           <template slot="top">
-            <splitter-pane-v @resize="resize1" initial-size="60%">
+            <splitter-pane-v @resize="resizeB" initial-size="60%">
 
               <template slot="left">
                 <div class="pane-outer">
-                  <div class="pane">B</div>
+                  <div class="pane">
+                    <div>B</div>
+                    <div class="size">{{ sizeB }}</div>
+                  </div>
                 </div>
               </template>
 
@@ -47,13 +53,16 @@
           </template>
 
           <template slot="bottom">
-            <splitter-pane-v v-on:resize="resize2"
+            <splitter-pane-v v-on:resize="resizeD"
                              :throttle="20"
                              initial-size="200px">
 
               <template slot="left">
                 <div class="pane-outer">
-                  <div class="pane">D</div>
+                  <div class="pane">
+                    <div>D</div>
+                    <div class="size">{{ sizeD }}</div>
+                  </div>
                 </div>
               </template>
 

@@ -5,15 +5,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/SplitterPane.vue.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/SplitterPane.vue.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/umd/vue-splitter-pane.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/umd/vue-splitter-pane.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/vue-splitter-pane.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/vue-splitter-pane.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pane.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResizeHandle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResizeHandle.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SplitterPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/SplitterPane.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -92,10 +91,10 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="babelrc" value="1" />
-          <entry key="css" value="1" />
+          <entry key="css" value="2" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="2" />
-          <entry key="js" value="37" />
+          <entry key="js" value="38" />
           <entry key="json" value="7" />
           <entry key="md" value="1" />
           <entry key="ts" value="28" />
@@ -104,11 +103,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="1" />
+          <entry key="CSS" value="2" />
           <entry key="Git file" value="1" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="37" />
+          <entry key="JavaScript" value="38" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="TypeScript" value="28" />
           <entry key="Vue.js" value="6" />
@@ -122,24 +121,24 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="653" />
+          <entry key="css" value="761" />
           <entry key="dummy" value="25" />
-          <entry key="html" value="2171" />
-          <entry key="js" value="5714" />
+          <entry key="html" value="2588" />
+          <entry key="js" value="6038" />
           <entry key="json" value="163" />
-          <entry key="ts" value="2469" />
-          <entry key="vue" value="6447" />
+          <entry key="ts" value="2470" />
+          <entry key="vue" value="8041" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="653" />
-          <entry key="HTML" value="2171" />
+          <entry key="CSS" value="761" />
+          <entry key="HTML" value="2588" />
           <entry key="JSON" value="71" />
-          <entry key="JavaScript" value="5714" />
+          <entry key="JavaScript" value="6038" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="TypeScript" value="2469" />
-          <entry key="Vue.js" value="6447" />
+          <entry key="TypeScript" value="2470" />
+          <entry key="Vue.js" value="8041" />
           <entry key="tsconfig" value="92" />
         </counts>
       </usages-collector>
@@ -156,10 +155,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SplitterPane.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+            <state relative-caret-position="-726">
+              <caret line="261" column="40" selection-start-line="261" selection-start-column="40" selection-end-line="261" selection-end-column="40" />
               <folding>
-                <element signature="e#1919#1980#0" expanded="true" />
+                <element signature="e#1949#2010#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,28 +189,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/vue/types/vnode.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/vue/types/index.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" selection-start-column="11" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="247">
+              <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -219,8 +209,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="224">
+              <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -231,8 +221,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ResizeHandle.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="230">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#143#186#0" expanded="true" />
               </folding>
@@ -240,11 +230,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Pane.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="281">
+              <caret line="64" column="3" lean-forward="true" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
               <folding>
                 <element signature="e#1310#1353#0" expanded="true" />
               </folding>
@@ -252,11 +242,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+            <state relative-caret-position="-83">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -339,15 +329,15 @@
         <option value="$PROJECT_DIR$/webpack/_install.js" />
         <option value="$PROJECT_DIR$/webpack/ts.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/demo/index.js" />
-        <option value="$PROJECT_DIR$/demo/index.css" />
-        <option value="$PROJECT_DIR$/src/Pane.vue" />
-        <option value="$PROJECT_DIR$/src/ResizeHandle.vue" />
         <option value="$PROJECT_DIR$/src/SplitterPaneV.ts" />
         <option value="$PROJECT_DIR$/src/SplitterPaneH.ts" />
-        <option value="$PROJECT_DIR$/src/SplitterPane.vue" />
-        <option value="$PROJECT_DIR$/demo/index.html" />
         <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/demo/index.css" />
+        <option value="$PROJECT_DIR$/demo/index.js" />
+        <option value="$PROJECT_DIR$/demo/index.html" />
+        <option value="$PROJECT_DIR$/src/ResizeHandle.vue" />
+        <option value="$PROJECT_DIR$/src/SplitterPane.vue" />
+        <option value="$PROJECT_DIR$/src/Pane.vue" />
       </list>
     </option>
   </component>
@@ -397,6 +387,32 @@
               <item name="vue-splitter-pane" type="b2602c69:ProjectViewProjectNode" />
               <item name="vue-splitter-pane" type="462c0819:PsiDirectoryNode" />
               <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-splitter-pane" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-splitter-pane" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-splitter-pane" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-splitter-pane" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="webpack-bundle-analyzer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-splitter-pane" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-splitter-pane" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="webpack-bundle-analyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-splitter-pane" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-splitter-pane" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="webpack-bundle-analyzer" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="viewer.js" type="620a8d5e:NestingTreeNode" />
             </path>
             <path>
               <item name="vue-splitter-pane" type="b2602c69:ProjectViewProjectNode" />
@@ -460,7 +476,7 @@
     <frame x="581" y="114" width="830" height="746" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" />
@@ -475,7 +491,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49938196" visible="true" weight="0.32991204" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49938196" visible="true" weight="0.32991204" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50061804" side_tool="true" weight="0.32991204" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -489,13 +505,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/babel-eslint/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="56" column="2" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/SplitterPane.vue.d.ts" />
     <entry file="file://$PROJECT_DIR$/dist/index.d.ts" />
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -711,13 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -746,16 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pane.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="e#1310#1353#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/vue/types/vnode.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -766,22 +758,56 @@
     <entry file="file://$PROJECT_DIR$/src/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ResizeHandle.vue">
+    <entry file="file://$PROJECT_DIR$/src/SplitterPaneV.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="304">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
           <folding>
-            <element signature="e#143#186#0" expanded="true" />
+            <element signature="e#1128#1161#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-83">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+        <state relative-caret-position="224">
+          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="56" column="42" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ResizeHandle.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#143#186#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -796,39 +822,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SplitterPaneV.ts">
+    <entry file="file://$PROJECT_DIR$/node_modules/webpack-bundle-analyzer/public/viewer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="e#1128#1161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        <state relative-caret-position="106">
+          <caret line="39" column="9418" lean-forward="true" selection-start-line="39" selection-start-column="9418" selection-end-line="39" selection-end-column="9418" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SplitterPane.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+        <state relative-caret-position="-726">
+          <caret line="261" column="40" selection-start-line="261" selection-start-column="40" selection-end-line="261" selection-end-column="40" />
           <folding>
-            <element signature="e#1919#1980#0" expanded="true" />
+            <element signature="e#1949#2010#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
+    <entry file="file://$PROJECT_DIR$/src/Pane.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        <state relative-caret-position="281">
+          <caret line="64" column="3" lean-forward="true" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#1310#1353#0" expanded="true" />
           </folding>
         </state>
       </provider>

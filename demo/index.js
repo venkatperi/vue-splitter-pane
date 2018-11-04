@@ -24,23 +24,22 @@ const App = Vue.extend( {
 
   data: function () {
     return {
-      rate1: 0,
-      rate2: 0,
-      mar1: new MovingAverageWithRate( { windowSize: 5 } ),
-      mar2: new MovingAverageWithRate( { windowSize: 5 } ),
+      sizeA: 0,
+      sizeB: 0,
+      sizeD: 0,
     }
   },
 
   methods: {
-    resize1() {
-      let res = this.mar1.add()
-      this.rate1 = res[1]
+    resizeA([a,b]) {
+      this.sizeA = `${a}px x ${b}px`
     },
-
-    resize2() {
-      let res = this.mar2.add()
-      this.rate2 = res[1]
+    resizeB([a,b]) {
+      this.sizeB = `${a}px x ${b}px`
     },
+    resizeD([a,b]) {
+      this.sizeD = `${a}px x ${b}px`
+    }
   },
 } )
 

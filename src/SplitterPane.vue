@@ -29,24 +29,20 @@
        @mouseup="onMouseUp"
        @mousemove="onMouseMove">
 
-    <pane position="one"
+    <pane :position="slotOne"
           ref="one"
           :xClass="xClass"
           :split="split"
-          :style="{ [type]: `${percent}%`}">
+          :style="styles">
       <slot :name="slotOne" />
     </pane>
 
     <resize-handle :xClass="xClass"
                    :split="split"
                    @mousedown.native="onMouseDown"
-                   @click.native="onClick" />
+                   @dblclick.native="onDblClick" />
 
-    <pane position="two"
-          ref="two"
-          :xClass="xClass"
-          :split="split"
-          :style="{ [type]: `${100-percent}%`}">
+    <pane :position="slotTwo" ref="two" :xClass="xClass" :split="split">
       <slot :name="slotTwo" />
     </pane>
 
@@ -67,7 +63,21 @@
     @Component({
         name: 'SplitterPane',
         components: {resizeHandle, Pane},
-        directives: {resize}
+        directives: {resize},
+        props: {
+            minSize: {
+                type: [String , Number],
+                default: '20%'
+            },
+            maxSize: {
+                type: [String , Number],
+                default: '80%'
+            },
+            initialSize: {
+                type: [String , Number],
+                default: '50%'
+            },
+        }
     })
     export default class SplitterPane extends Vue {
 
@@ -75,7 +85,7 @@
 
         hasMoved: boolean = false
 
-        percent: Number = 50
+        currentSize: string | number = '50%'
 
         sizes = [0, 0]
 
@@ -86,24 +96,15 @@
             two: Vue,
         }
 
-        @Prop minPercent = p({
-            type: Number,
-            default: 20,
-        })
+        minSize!: string | number
+
+        maxSize!: string | number
+
+        initialSize!: string | number
 
         @Prop throttle = p({
             type: Number,
             default: -1
-        })
-
-        @Prop maxPercent = p({
-            type: Number,
-            default: 80,
-        })
-
-        @Prop initialPercent = p({
-            type: Number,
-            default: 50,
         })
 
         @Prop split = p({
@@ -124,15 +125,14 @@
             this.$emit('resize', this.sizes, this.type)
         }
 
-        @Watch('percent')
-        percentChanged() {
+        @Watch('currentSize')
+        currentSizeChanged() {
             this.updateSizes()
         }
 
-
-        @Watch('initialPercent')
-        initialPercentChanged() {
-            this.percent = this.initialPercent
+        @Watch('initialSize')
+        initialSizeChanged() {
+            this.currentSize = this.initialSize
         }
 
         @Watch('throttle')
@@ -155,13 +155,26 @@
 
         @Lifecycle
         created() {
+            this.currentSize = this.initialSize
             this.updateHandler()
         }
 
         @Lifecycle
         mounted() {
-            this.percent = this.initialPercent
             this.updateSizes()
+        }
+
+        get styles(): any {
+            let s = {
+                [this.type]: this.currentSize
+            }
+            if (this.minSize) {
+                s[`min-${this.type}`] = this.minSize
+            }
+            if (this.maxSize) {
+                s[`max-${this.type}`] = this.maxSize
+            }
+            return s
         }
 
         get userSelect(): string {
@@ -197,9 +210,9 @@
                 : [one.clientHeight, two.clientHeight];
         }
 
-        onClick() {
+        onDblClick() {
             if (!this.hasMoved) {
-                this.percent = 50
+                this.currentSize = this.initialSize
             }
         }
 
@@ -222,30 +235,19 @@
                 this.dragging = false
             }
 
-            if (this.dragging &&
-                e.currentTarget &&
+            if (this.dragging && e.currentTarget &&
                 e.currentTarget instanceof HTMLElement) {
-                let target: HTMLElement = e.currentTarget
+                let t: HTMLElement = e.currentTarget
+                let r = t.getBoundingClientRect()
 
-                const currentPage = this.isVertical
-                                    ? e.pageX : e.pageY
-
-                const targetOffset = this.isVertical
-                                     ? e.currentTarget.offsetWidth
-                                     : e.currentTarget.offsetHeight
-
-                // see: https://msdn.microsoft.com/en-us/library/hh781509(VS.85).aspx
-                let rect = target.getBoundingClientRect()
-                let offset = this.isVertical
-                             ? window.pageXOffset + rect.left
-                             : window.pageYOffset + rect.top
+                const [currentPage, targetOffset, offset] =
+                    this.isVertical
+                    ? [e.pageX, t.offsetWidth, window.pageXOffset + r.left]
+                    : [e.pageY, t.offsetHeight, window.pageYOffset + r.top]
 
                 let diff = currentPage - offset
-                const percent = Math.floor(
-                    (diff / targetOffset) * 10000) / 100
+                this.currentSize = `${(diff / targetOffset) * 100}%`
 
-                this.percent = Math.max(this.minPercent,
-                    Math.min(percent, this.maxPercent))
                 this.hasMoved = true
             }
         }
@@ -266,10 +268,12 @@
 
   .splitter-container {
     height: 100%;
-    position: relative;
-  }
-
-  .splitter-container.vertical {
+    width: 100%;
     display: flex;
   }
+
+  .splitter-container.horizontal {
+    flex-direction: column;
+  }
+
 </style>

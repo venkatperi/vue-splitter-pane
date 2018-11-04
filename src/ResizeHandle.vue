@@ -1,5 +1,6 @@
+<!--suppress CheckEmptyScriptTag -->
 <template>
-  <div :class="['splitter-pane-handle', split, xClass]"></div>
+  <div :class="['splitter-pane-handle', split, xClass]" />
 </template>
 
 <script lang="ts">
@@ -26,38 +27,41 @@
 
 <style lang="scss">
 
-  $handle-size: 5;
+  $handle-size: 9;
   $handle-half-size: floor($handle-size/2) + 0px;
-  $border-color: rgba(255, 255, 255, 0);
+  $border-color: rgba(0, 0, 0, 0.0);
 
   .splitter-pane-handle {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     background: #000;
     opacity: .2;
     z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     -moz-background-clip: padding;
     -webkit-background-clip: padding;
     background-clip: padding-box;
-  }
-
-  .splitter-pane-handle.horizontal {
-    height: $handle-size + 0px;
-    margin-top: -$handle-half-size;
-    border-top: $handle-half-size solid $border-color;
-    border-bottom: $handle-half-size solid $border-color;
-    cursor: row-resize;
     width: 100%;
-  }
-
-  .splitter-pane-handle.vertical {
-    width: $handle-size + 0px;
     height: 100%;
-    margin-left: -$handle-half-size;
-    border-left: $handle-half-size solid $border-color;
-    border-right: $handle-half-size solid $border-color;
-    cursor: col-resize;
+    border: $handle-half-size solid $border-color;
+
+    &.horizontal {
+      height: $handle-size + 0px;
+      margin-top: -$handle-half-size;
+      margin-bottom: -$handle-half-size;
+      border-left: none;
+      border-right: none;
+      cursor: row-resize;
+    }
+
+    &.vertical {
+      width: $handle-size + 0px;
+      margin-left: -$handle-half-size;
+      margin-right: -$handle-half-size;
+      border-top: none;
+      border-bottom: none;
+      cursor: col-resize;
+    }
   }
 </style>
 

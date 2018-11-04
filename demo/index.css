@@ -1,26 +1,41 @@
-	.components-container {
-		position: relative;
-		height: 100vh;
-	}
+.components-container {
+    position: relative;
+    height: 100vh;
+}
 
-	/*.left-container {
-		background-color: #F38181;
-		height: 100%;
-	}
+body {
+    margin: 0;
+    background: #ccc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
 
-	.right-container {
-		background-color: #FCE38A;
-		height: 200px;
-	}
+.pane-outer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
 
-	.top-container {
-		background-color: #FCE38A;
-		width: 100%;
-		height: 100%;
-	}
+.pane {
+    font-size: 50px;
+    text-align: center;
+    margin: 20px;
+    border: dashed 1px #417378;
+    flex: 1 100%;
+    justify-content: center;
+    align-items: center;
+}
 
-	.bottom-container {
-		width: 100%;
-		background-color: #95E1D3;
-		height: 100%;
-	}*/
+.rate {
+    display: inline-block;
+    width: 200px;
+}
+
+#stats {
+    font-size: 14px;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    background: #888;
+    color: white;
+    padding: 0 20px;
+}

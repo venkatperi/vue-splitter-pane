@@ -60,13 +60,7 @@
     overflow: hidden;
   }
 
-  .splitter-pane.vertical {
-    display: inline-block;
-    height: 100%;
-  }
-
-  .splitter-pane.horizontal {
-    display: block;
-    width: 100%;
+  .splitter-pane-right , .splitter-pane-bottom {
+    flex: 1;
   }
 </style>

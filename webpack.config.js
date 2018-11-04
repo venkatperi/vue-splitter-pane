@@ -11,7 +11,7 @@ const modules = [
   'misc',
   'dev',
   'prod',
-  'hardSource',
+  // 'hardSource',
   // 'analyze',
 ]
 const variants = ['lib', 'umd']

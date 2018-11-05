@@ -1,5 +1,7 @@
 # Vue Splitter Pane
 
+[Demo](https://venkatperi.github.io/vue-splitter-pane/demo)
+
 `vue-splitter-pane` is a Vuejs component which renders two slots in a adjustable split arrangement (vetical or horizontal).
 
 Uses `flex-box` for sizing.
@@ -33,50 +35,49 @@ Vue.extend({
 
 #### Using `vue-splitter`
 ```html
-   <vue-splitter split="vertical">
-      <template slot="left">
-        content...
-      </template>
-      <template slot="right">
-        content...
-      </template>
-    </vue-splitter>
+<vue-splitter split="vertical">
+  <template slot="left">
+    content...
+  </template>
+  <template slot="right">
+    content...
+  </template>
+</vue-splitter>
 ```
 
 #### Using `vue-splitter-h`
 ```html
-    <vue-splitter-h>
-       <template slot="top">
-        content...
-       </template>
-       <template slot="bottom">
-        content...
-       </template>
-     </vue-splitter>
+<vue-splitter-h>
+   <template slot="top">
+    content...
+   </template>
+   <template slot="bottom">
+    content...
+   </template>
+ </vue-splitter>
 ```
 
 #### Nested
 ```html
-  //nested
-  <vue-splitter-v initial-size="40%">
-    <template slot="left"> A </template>
-    <template slot="right">
-      <vue-splitter-h>
-        <template slot="top">
-          <vue-splitter-v initial-size="60%">
-            <template slot="left">B</template>
-            <template slot="right">C</template>
-          </vue-splitter-v>
-        </template>
-        <template slot="bottom">
-          <vue-splitter-v :throttle="20" initial-size="200px">
-            <template slot="left">D</template>
-            <template slot="right">E</template>
-          </vue-splitter-v>
-        </template>
-      </vue-splitter-h>
-    </template>
-  </vue-splitter-v>
+<vue-splitter-v initial-size="40%">
+  <template slot="left"> A </template>
+  <template slot="right">
+    <vue-splitter-h>
+      <template slot="top">
+        <vue-splitter-v initial-size="60%">
+          <template slot="left">B</template>
+          <template slot="right">C</template>
+        </vue-splitter-v>
+      </template>
+      <template slot="bottom">
+        <vue-splitter-v :throttle="20" initial-size="200px">
+          <template slot="left">D</template>
+          <template slot="right">E</template>
+        </vue-splitter-v>
+      </template>
+    </vue-splitter-h>
+  </template>
+</vue-splitter-v>
 ```
 
 ### Slot Names
@@ -117,4 +118,3 @@ Vue.extend({
 * `.VueSplitter-Handle-item`: the handle
 * `.VueSplitter-Handle-[horizontal|vertical]`: specialization by split type
 * value set via `x-class`
-

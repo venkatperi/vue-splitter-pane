@@ -19,32 +19,55 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const npm = require( 'npm-programmatic' )
-const path = require( 'path' );
+
+const { exec } = require( 'child_process' )
 const fs = require( 'fs' );
 
-function installDeps( modules ) {
-  let deps = ['webpack', 'webpack-cli', 'webpack-chain']
-  for ( let m of modules ) {
-    let c = require( `./${m}` )
-    if ( c.__deps )
-      deps.push( ...c.__deps )
-  }
-
-  console.log( deps )
-  return npm.install( deps, {
-    saveDev: true,
-    output: true,
-    cwd: path.resolve(__dirname, '..')
+function readdirp( path ) {
+  return new Promise( ( resolve, reject ) => {
+    fs.readdir( path, ( err, files ) => {
+      if ( err ) return reject( err )
+      resolve( files )
+    } )
   } )
 }
 
-async function run() {
-  fs.readdir( __dirname, ( err, files ) => {
-    const list = files.filter( file => !file.startsWith( '_' ) && file.endsWith( '.js' ) && file !== 'index.js' )
-    installDeps( list )
+function execp( cmd, opts ) {
+  opts || (opts = {});
+  return new Promise( ( resolve, reject ) => {
+    const child = exec( cmd, opts,
+      ( err, stdout, stderr ) => err ? reject( err ) : resolve( {
+        stdout: stdout,
+        stderr: stderr,
+      } ) );
+
+    if ( opts.stdout ) {
+      child.stdout.pipe( opts.stdout );
+    }
+    if ( opts.stderr ) {
+      child.stderr.pipe( opts.stderr );
+    }
   } )
 }
 
+function getMode() {
+  let m = 'development'
+  if ( process.env.NODE_ENV && process.env.NODE_ENV === 'production' )
+    m = 'production'
+  return m
+}
 
-module.exports = run()
+let m = getMode()
+
+const mode = {
+  value: m,
+  production: m === 'production',
+  development: m === 'development',
+}
+
+module.exports = {
+  readdirp,
+  getMode,
+  mode,
+  execp,
+}

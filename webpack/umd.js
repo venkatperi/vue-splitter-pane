@@ -20,9 +20,10 @@
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 const path = require( 'path' );
+const { mode } = require( './lib/index' )
 
 module.exports = config =>
   config.output
     .path( path.resolve( __dirname, '../dist/umd' ) )
-    .libraryTarget('umd')
-    .filename( '[name].min.js' );
+    .libraryTarget( 'umd' )
+    .filename( `[name].${mode.production ? 'min.' : ''}js` );

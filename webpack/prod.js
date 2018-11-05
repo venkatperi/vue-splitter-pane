@@ -19,14 +19,17 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const webpack = require( 'webpack' )
+const { mode } = require( './lib/index' )
 
-module.exports = config =>
-  config.when( process.env.NODE_ENV === 'production', config => {
+module.exports = config => {
+  const webpack = require( 'webpack' )
+
+  return config.when( mode.production, config => {
     config.mode( 'production' )
     config
       .plugin( 'globals' )
       .use( webpack.DefinePlugin, [{
         'process.env': { NODE_ENV: '"production"' },
       }] );
-  } )
+  } );
+}

@@ -19,6 +19,8 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+const { mode } = require( './lib/index' )
+
 module.exports = config =>
   config.output
-    .filename( '[name].min.js' );
+    .filename( `[name].${mode.production ? 'min.' : ''}js` );

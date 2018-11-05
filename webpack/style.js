@@ -20,15 +20,24 @@
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-const x = config => {
-  config.module
-    .rule( 'style' )
-    .test( /\.(sa|sc|c)ss$/ )
-    .when( config.module.rules.has( 'vue' ),
-      x => x.use( 'vue' ).loader( 'vue-style-loader' ) )
+const x = ( config, opts = {} ) => {
+  const rule = config.module.rule( 'style' )
 
-  config.module.rule( 'style' ).use( 'css' ).loader( 'css-loader' )
-  config.module.rule( 'style' ).use( 'sass' ).loader( 'sass-loader' )
+  rule.test( /\.(sa|sc|c)ss$/ )
+    .when( config.module.rules.has( 'vue' ), x => x
+      .use( 'vue' )
+      .loader( 'vue-style-loader' )
+      .options( opts.vueStyleLoader ) )
+
+  config.module.rule( 'style' )
+    .use( 'css' )
+    .loader( 'css-loader' )
+    .options( opts.cssLoader )
+
+  config.module.rule( 'style' )
+    .use( 'sass' )
+    .loader( 'sass-loader' )
+    .options( opts.sassLoader )
 }
 
 x.__deps = ['vue-style-loader', 'css-loader', 'sass-loader',

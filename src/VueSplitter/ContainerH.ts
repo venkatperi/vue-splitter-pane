@@ -19,39 +19,19 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Config = require( 'webpack-chain' )
+import { Component } from "av-ts"
+import VueSplitter from "./Container.vue";
 
-function dumpConfig( config ) {
-  const { inspect } = require( 'util' )
-  console.log( inspect( config, { depth: 10, colors: true } ) )
-}
 
-function processModules( modules, init ) {
-  const config = new Config()
-  init( config )
-  modules.forEach( _x => {
-    let args = []
-    let x = _x
-    if ( Array.isArray( x ) ) {
-      args = [..._x]
-      x = args.shift()
+@Component({
+    name: "VueSplitterH",
+    props: {
+        split: {
+            type: String,
+            default: 'horizontal'
+        }
     }
-    return require( `./${x}` )( config, ...args );
-  } );
-  return config
+})
+export default class ContainerH extends VueSplitter {
 }
 
-function processVariants( variants, modules, init ) {
-  let x = variants
-    .map( x => {
-      let c = processModules( modules, init )
-      require( `./${x}` )( c )
-      return c
-    } )
-    .map( x => x.toConfig() )
-  if ( process.env.DUMP_CONFIG )
-    dumpConfig( x )
-  return x
-}
-
-module.exports = processVariants

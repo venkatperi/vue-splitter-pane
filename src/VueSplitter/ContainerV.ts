@@ -20,11 +20,11 @@
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { Component } from "av-ts"
-import SplitterPane from "./SplitterPane.vue";
+import VueSplitter from "./Container.vue";
 
 
 @Component({
-    name: "SplitterPaneV",
+    name: "VueSplitterV",
     props: {
         split: {
             type: String,
@@ -32,6 +32,6 @@ import SplitterPane from "./SplitterPane.vue";
         }
     }
 })
-export default class SplitterPaneV extends SplitterPane {
+export default class ContainerV extends VueSplitter {
 }
 

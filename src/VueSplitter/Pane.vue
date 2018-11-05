@@ -22,45 +22,37 @@
   -->
 
 <template>
-  <div :class="['splitter-pane', split, xClass, `splitter-pane-${position}`]">
+  <div :class="[$style.item, $style[position], xClass]">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
     import { Component, p, Prop } from "av-ts";
-    import Vue from 'vue'
+    import BaseComponent from "../BaseComponent";
 
-    @Component({
-        name: 'Pane'
-    })
-    export default class Pane extends Vue {
-        @Prop xClass = p({
-            type: String,
-        })
-
-        @Prop split = p({
-            type: String,
-            required: true,
-            validator(value) {
-                return ['vertical', 'horizontal'].indexOf(value) >= 0
-            },
-        })
-
+    @Component({name: 'Pane'})
+    export default class Pane extends BaseComponent {
         @Prop position = p({
             type: String,
             required: true
         })
-
     }
 </script>
 
-<style>
-  .splitter-pane {
+<style module>
+  .item {
+    margin: 0;
+    padding: 0;
+    border: none;
     overflow: hidden;
   }
 
-  .splitter-pane-right , .splitter-pane-bottom {
+  .left, .top {
+    flex: inherit;
+  }
+
+  .right, .bottom {
     flex: 1;
   }
 </style>

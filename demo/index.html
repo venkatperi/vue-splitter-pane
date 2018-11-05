@@ -3,24 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <title>vue-count-to</title>
+  <title>vue-splitter demo</title>
   <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
 <script src="https://unpkg.com/vue@2.2.6"></script>
-<!--<script src="https://unpkg.com/average-rate@1.0.3"></script>-->
-<script src="../dist/vue-splitter-pane.min.js"></script>
+<script src="../dist/vue-splitter-pane.js"></script>
 
 <div id="app" class="components-container">
 
   <template>
-    <!--<div id="stats">-->
-      <!--<span class="rate">Rate: {{ rate1.toFixed(2) }}</span>-->
-      <!--<span class="rate">With Throttle: {{ rate2.toFixed(2) }}</span>-->
-    <!--</div>-->
-
-    <splitter-pane-v initial-size="40%" @resize="resizeA">
+    <vue-splitter-v initial-size="40%" @resize="resizeA" x-class="test">
       <template slot="left">
         <div class="pane-outer">
           <div class="pane">
@@ -30,9 +24,9 @@
         </div>
       </template>
       <template slot="right">
-        <splitter-pane-h>
+        <vue-splitter-h>
           <template slot="top">
-            <splitter-pane-v @resize="resizeB" initial-size="60%">
+            <vue-splitter-v @resize="resizeB" initial-size="60%">
 
               <template slot="left">
                 <div class="pane-outer">
@@ -49,11 +43,11 @@
                 </div>
               </template>
 
-            </splitter-pane-v>
+            </vue-splitter-v>
           </template>
 
           <template slot="bottom">
-            <splitter-pane-v v-on:resize="resizeD"
+            <vue-splitter-v v-on:resize="resizeD"
                              :throttle="20"
                              initial-size="200px">
 
@@ -72,13 +66,13 @@
                 </div>
               </template>
 
-            </splitter-pane-v>
+            </vue-splitter-v>
           </template>
 
-        </splitter-pane-h>
+        </vue-splitter-h>
 
       </template>
-    </splitter-pane-v>
+    </vue-splitter-v>
 
   </template>
 

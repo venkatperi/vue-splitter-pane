@@ -1,20 +1,18 @@
 import { PluginObject, VueConstructor } from 'vue'
-import SplitterPane from './SplitterPane.vue'
-import SplitterPaneH from "./SplitterPaneH"
-import SplitterPaneV from "./SplitterPaneV"
-
-export default SplitterPane
+import VueSplitter from './VueSplitter/Container.vue'
+import VueSplitterH from "./VueSplitter/ContainerH"
+import VueSplitterV from "./VueSplitter/ContainerV"
 
 const plugin: PluginObject<any> = {
     install(Vue: VueConstructor) {
-        Vue.component('splitter-pane', SplitterPane)
-        Vue.component('splitter-pane-v', SplitterPaneV)
-        Vue.component('splitter-pane-h', SplitterPaneH)
+        Vue.component('vue-splitter', VueSplitter)
+        Vue.component('vue-splitter-v', VueSplitterV)
+        Vue.component('vue-splitter-h', VueSplitterH)
     }
 }
 
 // @ts-ignore
-SplitterPane.install = plugin.install
+VueSplitter.install = plugin.install
 
 declare global {
     interface Window {
@@ -24,12 +22,14 @@ declare global {
 
 if (window && window.Vue) {
     // @ts-ignore
-    window.Vue.use(SplitterPane)
+    window.Vue.use(VueSplitter)
 }
+
+export default VueSplitter
 
 export
 {
-    SplitterPaneV,
-    SplitterPaneH,
+    VueSplitterH,
+    VueSplitterV,
     plugin
 }

@@ -1,82 +1,82 @@
 # Vue Splitter Pane
 
-`vue-splitter-pane` is a Vuejs component which renders two slots in a adjustable split arrangement (vetical or horizontal).
+`vue-vue-splitter` is a Vuejs component which renders two slots in a adjustable split arrangement (vetical or horizontal).
 
 Uses `flex-box` for sizing.
 
 ### Installation & Usage
 ```bash
-$ npm install vue-splitter-pane
+$ npm install vue-vue-splitter
 ```
 
 #### Vue Global Usage
 ```javascript
-import SplitterPane from 'vue-splitter-pane'
-Vue.use(SplitterPane); # registers splitter-pane, splitter-pane-v and splitter-pane-h
+import VueSplitter from 'vue-vue-splitter'
+Vue.use(VueSplitter); # registers vue-splitter, vue-splitter-v and vue-splitter-h
 
 ```
 
 #### Vue Local Usage
 ```javascript
-import SplitterPane, {SplittePaneV, SplitterPaneH} from 'vue-splitter-pane'
+import VueSplitter, {VueSplitterH, VueSplitterV} from 'vue-vue-splitter'
 Vue.extend({
   ...,
   components:  {
-    SplitterPane,       // registers splitter-pane, must provide orientation
-    SplitterPaneV,      // registers splitrer-pane-v, for side by side arrangement
-    SplitterPaneH       // registers splitter-pane-h for top/bottom arrangement
+    VueSplitter,       // registers vue-splitter, must provide orientation
+    VueSplitterV,      // registers vue-splitrer-v, for side by side arrangement
+    VueSplitterH       // registers vue-splitter-h for top/bottom arrangement
   }
 })
 ```
 
 ### Examples
 
-#### Using `splitter-pane`
+#### Using `vue-splitter`
 ```html
-   <splitter-pane split="vertical">
+   <vue-splitter split="vertical">
       <template slot="left">
         content...
       </template>
       <template slot="right">
         content...
       </template>
-    </splitter-pane>
+    </vue-splitter>
 ```
 
-#### Using `splitter-pane-h`
+#### Using `vue-splitter-h`
 ```html
-    <splitter-pane-h>
+    <vue-splitter-h>
        <template slot="top">
         content...
        </template>
        <template slot="bottom">
         content...
        </template>
-     </splitter-pane>
+     </vue-splitter>
 ```
 
 #### Nested
 ```html
   //nested
-  <splitter-pane-v initial-size="40%">
+  <vue-splitter-v initial-size="40%">
     <template slot="left"> A </template>
     <template slot="right">
-      <splitter-pane-h>
+      <vue-splitter-h>
         <template slot="top">
-          <splitter-pane-v initial-size="60%">
+          <vue-splitter-v initial-size="60%">
             <template slot="left">B</template>
             <template slot="right">C</template>
-          </splitter-pane-v>
+          </vue-splitter-v>
         </template>
         <template slot="bottom">
-          <splitter-pane-v :throttle="20" initial-size="200px">
+          <vue-splitter-v :throttle="20" initial-size="200px">
             <template slot="left">D</template>
             <template slot="right">E</template>
-          </splitter-pane-v>
+          </vue-splitter-v>
         </template>
-      </splitter-pane-h>
+      </vue-splitter-h>
     </template>
-  </splitter-pane-v>
+  </vue-splitter-v>
 ```
 
 ### Slot Names
@@ -101,9 +101,20 @@ Vue.extend({
 
 
 ### Styling
-`splitter-pane` includes the bare minimal styling to ensure functionality.
+`vue-splitter-pane` includes the bare minimal styling to ensure functionality.
 
-* `.spliter-container[.vertical|.horizontal][.xclass]``: The outer container. `xclass` is a user supplied name.
+#### Container
+* `.VueSplitter-Container-item`: the container
+* `.VueSplitter-Container-[horizontal|vertical]`: specialization for split type
+* value set via `x-class`
 
-* `.splitter-pane[.vertical|.horizontal].splitter-pane-[left|right|top|bottom][.xclass]`: Individual panes.
-* `.splitter-pane-handle[.vertical|.horizontal][.xclass]`: The handle
+#### Panes
+* `.VueSplitter-Pane-item`: the pane
+* `.VueSplitter-Pane-[left|right|top|bottom]`: specialization by position
+* value set via `x-class`
+
+#### Handle
+* `.VueSplitter-Handle-item`: the handle
+* `.VueSplitter-Handle-[horizontal|vertical]`: specialization by split type
+* value set via `x-class`
+

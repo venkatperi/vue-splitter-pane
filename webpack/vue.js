@@ -20,7 +20,7 @@
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-let x = ( config ) => {
+let x = ( config, opts = {} ) => {
   const VueLoaderPlugin = require( 'vue-loader/lib/plugin' )
   config
     .plugin( 'vueLoader' )
@@ -31,7 +31,7 @@ let x = ( config ) => {
     .test( /\.vue$/ )
     .use( 'vue' )
     .loader( 'vue-loader' )
-
+    .options( opts.vueLoader )
 
   config.resolve.alias
     .set( 'vue$', 'vue/dist/vue.esm.js' )

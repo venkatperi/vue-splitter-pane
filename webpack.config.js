@@ -2,9 +2,14 @@ const path = require( 'path' )
 const run = require( './webpack' )
 
 const modules = [
-  'vue',
+  ['vue', {}],
   'ts',
-  'style',
+  ['style', {
+    cssLoader: {
+      modules: true,
+      localIdentName: '[folder]-[name]-[local]',
+    },
+  }],
   'img',
   'ext',
   'devServer',

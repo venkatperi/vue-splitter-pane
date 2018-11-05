@@ -23,8 +23,7 @@
 
 <!--suppress TypeScriptValidateTypes -->
 <template>
-  <div :style="{ cursor, userSelect}"
-       :class="['splitter-container', 'clearfix', split, xClass]"
+  <div :class="[$style.item, $style[split],  xClass]"
        v-resize="updateSizes"
        @mouseup="onMouseUp"
        @mousemove="onMouseMove">
@@ -33,14 +32,14 @@
           ref="one"
           :xClass="xClass"
           :split="split"
-          :style="styles">
+          :style="paneOneStyles">
       <slot :name="slotOne" />
     </pane>
 
-    <resize-handle :xClass="xClass"
-                   :split="split"
-                   @mousedown.native="onMouseDown"
-                   @dblclick.native="onDblClick" />
+    <handle :xClass="xClass"
+            :split="split"
+            @mousedown.native="onMouseDown"
+            @dblclick.native="onDblClick" />
 
     <pane :position="slotTwo" ref="two" :xClass="xClass" :split="split">
       <slot :name="slotTwo" />
@@ -53,33 +52,34 @@
     import { Component, Lifecycle, p, Prop, Watch } from "av-ts";
     import Vue from 'vue'
     import resize from 'vue-resize-directive'
+    import BaseComponent from "../BaseComponent";
+    import Handle from './Handle.vue'
     import Pane from './Pane.vue'
-    import resizeHandle from './ResizeHandle.vue'
 
     const debounce = require('lodash.debounce')
 
     type StyleType = 'width' | 'height'
 
     @Component({
-        name: 'SplitterPane',
-        components: {resizeHandle, Pane},
+        name: 'VueSplitter',
+        components: {Handle, Pane},
         directives: {resize},
         props: {
             minSize: {
-                type: [String , Number],
+                type: [String, Number],
                 default: '20%'
             },
             maxSize: {
-                type: [String , Number],
+                type: [String, Number],
                 default: '80%'
             },
             initialSize: {
-                type: [String , Number],
+                type: [String, Number],
                 default: '50%'
             },
         }
     })
-    export default class SplitterPane extends Vue {
+    export default class Container extends BaseComponent {
 
         dragging: boolean = false
 
@@ -105,19 +105,6 @@
         @Prop throttle = p({
             type: Number,
             default: -1
-        })
-
-        @Prop split = p({
-            type: String,
-            required: true,
-            validator(value) {
-                return ['vertical', 'horizontal'].indexOf(value) >= 0
-            },
-        })
-
-        @Prop xClass = p({
-            type: String,
-            default: '',
         })
 
         @Watch('sizes')
@@ -164,7 +151,7 @@
             this.updateSizes()
         }
 
-        get styles(): any {
+        get paneOneStyles(): any {
             let s = {
                 [this.type]: this.currentSize
             }
@@ -175,14 +162,6 @@
                 s[`max-${this.type}`] = this.maxSize
             }
             return s
-        }
-
-        get userSelect(): string {
-            return this.dragging ? 'none' : ''
-        }
-
-        get cursor(): string {
-            return this.dragging ? 'col-resize' : ''
         }
 
         get type(): StyleType {
@@ -221,7 +200,6 @@
             this.hasMoved = false
         }
 
-
         onMouseUp() {
             this.dragging = false
         }
@@ -231,7 +209,7 @@
         }
 
         doResize(e: MouseEvent) {
-            if (e.buttons === 0 || e.which === 0) {
+            if (e.buttons === 0) {
                 this.dragging = false
             }
 
@@ -255,25 +233,24 @@
     }
 </script>
 
-<style>
+<style lang="scss" module>
 
-  .clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-  }
-
-  .splitter-container {
+  .item {
     height: 100%;
     width: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
     display: flex;
   }
 
-  .splitter-container.horizontal {
+  .horizontal {
     flex-direction: column;
   }
 
+  .vertical {
+    flex-direction: row;
+  }
+
 </style>
+

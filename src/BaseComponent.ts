@@ -19,19 +19,24 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { Component } from "av-ts"
-import SplitterPane from "./SplitterPane.vue";
-
+import { Component, p, Prop } from "av-ts"
+import Vue from 'vue'
 
 @Component({
-    name: "SplitterPaneH",
-    props: {
-        split: {
-            type: String,
-            default: 'horizontal'
-        }
-    }
+    name: "BaseComponent"
 })
-export default class SplitterPaneH extends SplitterPane {
+export default class BaseComponent extends Vue {
+    @Prop split = p({
+        type: String,
+        required: true,
+        validator(value) {
+            return ['vertical', 'horizontal'].indexOf(value) >= 0
+        },
+    })
+
+    @Prop xClass = p({
+        type: String,
+        default: '',
+    })
 }
 

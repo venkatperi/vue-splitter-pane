@@ -1,24 +1,24 @@
 # Vue Splitter Pane
 
-`vue-vue-splitter` is a Vuejs component which renders two slots in a adjustable split arrangement (vetical or horizontal).
+`vue-splitter-pane` is a Vuejs component which renders two slots in a adjustable split arrangement (vetical or horizontal).
 
 Uses `flex-box` for sizing.
 
 ### Installation & Usage
 ```bash
-$ npm install vue-vue-splitter
+$ npm install vue-splitter-pane
 ```
 
 #### Vue Global Usage
 ```javascript
-import VueSplitter from 'vue-vue-splitter'
+import VueSplitter from 'vue-splitter-pane'
 Vue.use(VueSplitter); # registers vue-splitter, vue-splitter-v and vue-splitter-h
 
 ```
 
 #### Vue Local Usage
 ```javascript
-import VueSplitter, {VueSplitterH, VueSplitterV} from 'vue-vue-splitter'
+import VueSplitter, {VueSplitterH, VueSplitterV} from 'vue-splitter-pane'
 Vue.extend({
   ...,
   components:  {

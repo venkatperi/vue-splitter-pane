@@ -23,6 +23,7 @@
 
 <!--suppress CheckEmptyScriptTag -->
 <template>
+  <!--suppress JSUnresolvedVariable -->
   <div :class="[$style.item, $style[split], xClass]" />
 </template>
 

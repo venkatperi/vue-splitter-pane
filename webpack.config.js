@@ -1,10 +1,8 @@
 const path = require( 'path' )
-// const run = require( './webpack' )
 const { run } = require( '@venkatperi/webpack-helper' )
-const pkg = require('./package.json')
 
 const modules = [
-  ['vue', {}],
+  'vue',
   'ts',
   ['style', {
     cssLoader: {
@@ -28,7 +26,7 @@ const variants = [
 
 module.exports = run( variants, modules, ( config ) => {
   config
-    .entry( pkg.name )
+    .entry( 'vue-splitter-pane' )
     .add( './src/index.ts' )
 
   config.output

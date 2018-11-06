@@ -23,6 +23,7 @@
 
 <!--suppress TypeScriptValidateTypes -->
 <template>
+  <!--suppress JSUnresolvedVariable -->
   <div :class="[$style.item, $style[split],  xClass]"
        v-resize="updateSizes"
        @mouseup="onMouseUp"
@@ -33,9 +34,7 @@
           :xClass="xClass"
           :split="split"
           :style="paneOneStyles">
-      <template :slot="positionOne">
-        <slot :name="positionOne" />
-      </template>
+      <slot :name="positionOne" />
     </pane>
 
     <handle :xClass="xClass"
@@ -44,9 +43,7 @@
             @dblclick.native="onDblClick" />
 
     <pane :position="positionTwo" ref="two" :xClass="xClass" :split="split">
-      <template :slot="positionTwo">
-        <slot :name="positionTwo" />
-      </template>
+      <slot :name="positionTwo" />
     </pane>
 
   </div>
@@ -197,10 +194,10 @@
                 ? [one.clientWidth, two.clientWidth]
                 : [one.clientHeight, two.clientHeight];
 
-            if (this.forceSizing) {
-                this.$refs.one.$emit('resize')
-                this.$refs.two.$emit('resize')
-            }
+            // if (this.forceSizing) {
+            //     this.$refs.one.$emit('resize')
+            //     this.$refs.two.$emit('resize')
+            // }
         }
 
         onDblClick() {

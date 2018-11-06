@@ -22,8 +22,9 @@
   -->
 
 <template>
+  <!--suppress JSUnresolvedVariable -->
   <div :class="[$style.item, $style[position], xClass]">
-    <slot :name="position"/>
+    <slot />
   </div>
 </template>
 

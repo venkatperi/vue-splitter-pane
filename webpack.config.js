@@ -1,5 +1,7 @@
 const path = require( 'path' )
-const run = require( './webpack' )
+// const run = require( './webpack' )
+const { run } = require( '@venkatperi/webpack-helper' )
+const pkg = require('./package.json')
 
 const modules = [
   ['vue', {}],
@@ -26,7 +28,7 @@ const variants = [
 
 module.exports = run( variants, modules, ( config ) => {
   config
-    .entry( 'vue-splitter-pane' )
+    .entry( pkg.name )
     .add( './src/index.ts' )
 
   config.output

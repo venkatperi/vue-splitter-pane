@@ -28,12 +28,14 @@
        @mouseup="onMouseUp"
        @mousemove="onMouseMove">
 
-    <pane :position="slotOne"
+    <pane :position="positionOne"
           ref="one"
           :xClass="xClass"
           :split="split"
           :style="paneOneStyles">
-      <slot :name="slotOne" />
+      <template :slot="positionOne">
+        <slot :name="positionOne" />
+      </template>
     </pane>
 
     <handle :xClass="xClass"
@@ -41,8 +43,10 @@
             @mousedown.native="onMouseDown"
             @dblclick.native="onDblClick" />
 
-    <pane :position="slotTwo" ref="two" :xClass="xClass" :split="split">
-      <slot :name="slotTwo" />
+    <pane :position="positionTwo" ref="two" :xClass="xClass" :split="split">
+      <template :slot="positionTwo">
+        <slot :name="positionTwo" />
+      </template>
     </pane>
 
   </div>
@@ -160,11 +164,11 @@
             return this.split === 'vertical' ? 'width' : 'height'
         }
 
-        get slotOne(): string {
+        get positionOne(): string {
             return this.split === 'vertical' ? 'left' : 'top'
         }
 
-        get slotTwo(): string {
+        get positionTwo(): string {
             return this.split === 'vertical' ? 'right' : 'bottom'
         }
 

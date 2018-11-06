@@ -23,7 +23,7 @@
 
 <template>
   <div :class="[$style.item, $style[position], xClass]">
-    <slot />
+    <slot :name="position"/>
   </div>
 </template>
 
@@ -42,7 +42,7 @@
 
         @Lifecycle mounted() {
             this.$on('resize', this.onResize.bind(this))
-            this.onResize()
+            // this.onResize()
         }
 
         onResize() {

@@ -58,7 +58,6 @@
 
     const debounce = require('lodash.debounce')
 
-    type StyleType = 'width' | 'height'
 
     @Component({
         name: 'VueSplitter',
@@ -107,6 +106,11 @@
             default: -1
         })
 
+        @Prop forceSizing = p({
+            type: Boolean,
+            default: false,
+        })
+
         @Watch('sizes')
         sizesChanged() {
             this.$emit('resize', this.sizes, this.type)
@@ -127,18 +131,6 @@
             this.updateHandler()
         }
 
-        updateHandler() {
-            let self = this
-            this.handler =
-                this.throttle < 0
-                ? this.doResize.bind(this) :
-                debounce((e: MouseEvent) => self.doResize(e),
-                    this.throttle, {
-                        leading: true,
-                        trailing: true,
-                        maxWait: this.throttle
-                    })
-        }
 
         @Lifecycle
         created() {
@@ -164,7 +156,7 @@
             return s
         }
 
-        get type(): StyleType {
+        get type(): string {
             return this.split === 'vertical' ? 'width' : 'height'
         }
 
@@ -180,6 +172,19 @@
             return this.split === 'vertical'
         }
 
+        updateHandler() {
+            let self = this
+            this.handler =
+                this.throttle < 0
+                ? this.doResize.bind(this) :
+                debounce((e: MouseEvent) => self.doResize(e),
+                    this.throttle, {
+                        leading: true,
+                        trailing: true,
+                        maxWait: this.throttle
+                    })
+        }
+
         updateSizes() {
             let one = this.$refs.one.$el
             let two = this.$refs.two.$el
@@ -187,8 +192,11 @@
                 this.isVertical
                 ? [one.clientWidth, two.clientWidth]
                 : [one.clientHeight, two.clientHeight];
-            this.$refs.one.$emit('resize')
-            this.$refs.two.$emit('resize')
+
+            if (this.forceSizing) {
+                this.$refs.one.$emit('resize')
+                this.$refs.two.$emit('resize')
+            }
         }
 
         onDblClick() {

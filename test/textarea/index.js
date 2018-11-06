@@ -19,14 +19,29 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+const App = Vue.extend( {
+  name: 'test',
 
-const x = config => {
-  const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' )
-  return config
-    .plugin( 'analyze')
-    .use( BundleAnalyzerPlugin );
-}
+  data: function () {
+    return {
+      sizeA: 0,
+      sizeB: 0,
+      sizeD: 0,
+    }
+  },
 
-x.__deps = ['webpack-bundle-analyzer']
+  methods: {
+    resizeA([a,b]) {
+      this.sizeA = `${a}px x ${b}px`
+    },
+    resizeB([a,b]) {
+      this.sizeB = `${a}px x ${b}px`
+    },
+    resizeD([a,b]) {
+      this.sizeD = `${a}px x ${b}px`
+    }
+  },
+} )
 
-module.exports = x
+new App().$mount( '#app' )
+

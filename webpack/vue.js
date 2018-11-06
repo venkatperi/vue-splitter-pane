@@ -35,6 +35,8 @@ let x = ( config, opts = {} ) => {
 
   config.resolve.alias
     .set( 'vue$', 'vue/dist/vue.esm.js' )
+
+  // config.externals('vue')
 }
 
 x.__deps = ['vue-loader', 'vue-template-compiler']

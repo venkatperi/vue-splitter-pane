@@ -19,7 +19,10 @@ const modules = [
   // 'hardSource',
   // 'analyze',
 ]
-const variants = ['lib', 'umd']
+const variants = [
+  'lib',
+  'umd',
+]
 
 module.exports = run( variants, modules, ( config ) => {
   config

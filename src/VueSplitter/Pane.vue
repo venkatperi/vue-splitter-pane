@@ -28,15 +28,31 @@
 </template>
 
 <script lang="ts">
-    import { Component, p, Prop } from "av-ts";
+    import { Component, Lifecycle, p, Prop } from "av-ts";
     import BaseComponent from "../BaseComponent";
 
-    @Component({name: 'Pane'})
+    @Component({
+        name: 'Pane',
+    })
     export default class Pane extends BaseComponent {
         @Prop position = p({
             type: String,
             required: true
         })
+
+        @Lifecycle mounted() {
+            this.$on('resize', this.onResize.bind(this))
+            this.onResize()
+        }
+
+        onResize() {
+            let elm = this.$slots.default[0].elm
+            if (elm instanceof HTMLElement) {
+                let el = this.$el
+                elm.style.width = `${el.clientWidth}px`
+                elm.style.height = `${el.clientHeight}px`
+            }
+        }
     }
 </script>
 

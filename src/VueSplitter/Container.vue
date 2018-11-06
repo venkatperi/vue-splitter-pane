@@ -187,6 +187,8 @@
                 this.isVertical
                 ? [one.clientWidth, two.clientWidth]
                 : [one.clientHeight, two.clientHeight];
+            this.$refs.one.$emit('resize')
+            this.$refs.two.$emit('resize')
         }
 
         onDblClick() {

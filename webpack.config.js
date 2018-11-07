@@ -2,6 +2,7 @@ const path = require( 'path' )
 const { run } = require( '@venkatperi/webpack-helper' )
 
 const modules = [
+  'mode',
   'vue',
   'ts',
   ['style', {
@@ -16,20 +17,21 @@ const modules = [
   'misc',
   'dev',
   'prod',
-  // 'hardSource',
-  // 'analyze',
 ]
 const variants = [
-  'lib',
+  'cjs',
   'umd',
 ]
 
-module.exports = run( variants, modules, ( config ) => {
+let cwd = __dirname
+
+module.exports = run( { variants, modules, cwd }, ( config ) => {
   config
     .entry( 'vue-splitter-pane' )
     .add( './src/index.ts' )
 
   config.output
     .path( path.resolve( __dirname, './dist' ) );
+
 } )
 

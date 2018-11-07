@@ -132,7 +132,6 @@
             this.updateHandler()
         }
 
-
         @Lifecycle
         created() {
             this.currentSize = this.initialSize

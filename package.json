@@ -12,7 +12,7 @@
     "build:webpack": "NODE_ENV=production webpack --hide-modules",
     "prebuild": "npm run clean",
     "build": "npm run build:webpack",
-    "xprepare": "npm run build",
+    "prepare": "npm run build",
     "dev": "NODE_ENV=development webpack-dev-server --content-base test/t1 --open --hot"
   },
   "files": [

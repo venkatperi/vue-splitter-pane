@@ -39,6 +39,7 @@
 
     <handle :xClass="xClass"
             :split="split"
+            :handle-size="handleSize"
             @mousedown.native="onMouseDown"
             @dblclick.native="onDblClick" />
 
@@ -87,7 +88,7 @@
 
         currentSize: string | number = '50%'
 
-        sizes = [0, 0]
+        sizes = [[0, 0], [0, 0]]
 
         handler: (e: MouseEvent) => void = this.doResize.bind(this)
 
@@ -107,14 +108,15 @@
             default: -1
         })
 
-        @Prop forceSizing = p({
-            type: Boolean,
-            default: false,
+        @Prop handleSize = p({
+            type: Number,
+            default: 9
         })
+
 
         @Watch('sizes')
         sizesChanged() {
-            this.$emit('resize', this.sizes, this.type)
+            this.$emit('resize', this.sizes[0], this.sizes[1])
         }
 
         @Watch('currentSize')
@@ -188,15 +190,14 @@
         updateSizes() {
             let one = this.$refs.one.$el
             let two = this.$refs.two.$el
-            this.sizes =
-                this.isVertical
-                ? [one.clientWidth, two.clientWidth]
-                : [one.clientHeight, two.clientHeight];
+            this.sizes = [
+                [one.clientWidth, one.clientHeight],
+                [two.clientWidth, two.clientHeight]]
 
-            // if (this.forceSizing) {
-            //     this.$refs.one.$emit('resize')
-            //     this.$refs.two.$emit('resize')
-            // }
+            if (this.forceSizing) {
+                this.$refs.one.$emit('resize')
+                this.$refs.two.$emit('resize')
+            }
         }
 
         onDblClick() {

@@ -40,3 +40,7 @@ body {
     color: white;
     padding: 0 20px;
 }
+
+.VueSplitter-Handle-item.demo {
+    background: red;
+}

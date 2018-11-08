@@ -34,6 +34,11 @@ export default class BaseComponent extends Vue {
         },
     })
 
+    @Prop forceSizing = p({
+        type: Boolean,
+        default: false,
+    })
+
     @Prop xClass = p({
         type: String,
         default: '',

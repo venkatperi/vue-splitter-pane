@@ -4,18 +4,19 @@
 <head>
   <meta charset="utf-8">
   <title>vue-splitter demo</title>
+  <!--<link rel="stylesheet" href="../dist/umd/vue-splitter-pane.css">-->
   <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
 <script src="https://unpkg.com/vue@2.2.6"></script>
 <script src="https://unpkg.com/vue-splitter-pane"></script>
-<!--<script src="../dist/vue-splitter-pane.min.js"></script>-->
+<!--<script src="../dist/umd/vue-splitter-pane.js"></script>-->
 
 <div id="app" class="components-container">
 
   <template>
-    <vue-splitter-v initial-size="40%" @resize="resizeA" x-class="test">
+    <vue-splitter-v initial-size="40%" @resize="resizeA" x-class="demo">
       <template slot="left">
         <div class="pane-outer">
           <div class="pane">
@@ -25,9 +26,10 @@
         </div>
       </template>
       <template slot="right">
-        <vue-splitter-h>
+        <vue-splitter-h :handle-size="11">
           <template slot="top">
-            <vue-splitter-v @resize="resizeB" initial-size="60%">
+            <vue-splitter-v @resize="resizeB" initial-size="60%"
+                            :handle-size="3">
 
               <template slot="left">
                 <div class="pane-outer">

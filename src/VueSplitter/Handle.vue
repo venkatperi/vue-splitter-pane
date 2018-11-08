@@ -24,23 +24,79 @@
 <!--suppress CheckEmptyScriptTag -->
 <template>
   <!--suppress JSUnresolvedVariable -->
-  <div :class="[$style.item, $style[split], xClass]" />
+  <div
+    :class="[$style.item, $style[split] ,
+    $style[`size-${handleSize}-${split}`],
+    xClass]" />
 </template>
 
 <script lang="ts">
-    import { Component } from "av-ts";
+    import { Component, p, Prop } from "av-ts";
     import BaseComponent from "../BaseComponent";
 
     @Component({name: 'Handle'})
     export default class Handle extends BaseComponent {
+        @Prop handleSize = p({
+            type: Number,
+            default: 9,
+        })
     }
 </script>
 
 <style lang="scss" module>
 
-  $handle-size: 9;
-  $handle-half-size: floor($handle-size/2) + 0px;
   $border-color: rgba(0, 0, 0, 0.0);
+  $defaultSize: 9;
+
+  @function halfSize($handle-size) {
+    @return floor($handle-size/2) + 0px;
+  }
+
+  @function name($handle-size) {
+    @return "size-#{$handle-size}"
+  }
+
+  @mixin makeItem($handle-size) {
+    $handle-half-size: halfSize($handle-size) ;
+    $name: name($handle-size);
+
+    border: $handle-half-size solid $border-color;
+  }
+
+  @mixin makeH($handle-size) {
+    $handle-half-size: halfSize($handle-size) ;
+    $name: name($handle-size);
+
+    height: $handle-size + 0px;
+    margin-top: -$handle-half-size;
+    margin-bottom: -$handle-half-size;
+  }
+
+  @mixin makeV($handle-size) {
+    $handle-half-size: halfSize($handle-size) ;
+    $name: name($handle-size);
+
+    width: $handle-size + 0px;
+    margin-left: -$handle-half-size;
+    margin-right: -$handle-half-size;
+  }
+
+  @mixin makeHandle($handle-size) {
+    $handle-half-size: halfSize($handle-size) ;
+    $name: name($handle-size);
+
+    .#{$name} {
+      @include makeItem($handle-size);
+    }
+
+    div.#{$name}-horizontal {
+      @include makeH($handle-size);
+    }
+
+    div.#{$name}-vertical {
+      @include makeV($handle-size);
+    }
+  }
 
   .item {
     background: #000;
@@ -54,26 +110,28 @@
     background-clip: padding-box;
     width: 100%;
     height: 100%;
-    border: $handle-half-size solid $border-color;
+
+    //@include makeItem($defaultSize)
   }
 
   .horizontal {
-    height: $handle-size + 0px;
-    margin-top: -$handle-half-size;
-    margin-bottom: -$handle-half-size;
     border-left: none;
     border-right: none;
     cursor: row-resize;
+    //@include makeH($defaultSize)
   }
 
   .vertical {
-    width: $handle-size + 0px;
-    margin-left: -$handle-half-size;
-    margin-right: -$handle-half-size;
     border-top: none;
     border-bottom: none;
     cursor: col-resize;
+    //@include makeV($defaultSize)
   }
+
+  @for $s from 1 through 5 {
+    @include makeHandle($s * 2 + 1)
+  }
+
 
 </style>
 

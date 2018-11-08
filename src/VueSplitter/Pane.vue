@@ -43,15 +43,17 @@
 
         @Lifecycle mounted() {
             this.$on('resize', this.onResize.bind(this))
-            // this.onResize()
+            this.onResize()
         }
 
         onResize() {
-            let elm = this.$slots.default[0].elm
-            if (elm instanceof HTMLElement) {
-                let el = this.$el
-                elm.style.width = `${el.clientWidth}px`
-                elm.style.height = `${el.clientHeight}px`
+            if (this.forceSizing) {
+                let elm = this.$slots.default[0].elm
+                if (elm instanceof HTMLElement) {
+                    let el = this.$el
+                    elm.style.width = `${el.clientWidth}px`
+                    elm.style.height = `${el.clientHeight}px`
+                }
             }
         }
     }

@@ -1,37 +1,45 @@
 const path = require( 'path' )
-const { run } = require( '@venkatperi/webpack-helper' )
+const webpack = require('webpack')
+const { webpackHelper } = require( '@venkatperi/webpack-helper' )
+let cwd = __dirname
 
-const modules = [
-  'mode',
-  'vue',
-  'ts',
-  ['style', {
+
+const modules = {
+  mode: true,
+  vue: true,
+  ts: true,
+  // miniExtractCss: true,
+  // optimizeCss: true,
+  style: {
     cssLoader: {
       modules: true,
       localIdentName: '[folder]-[name]-[local]',
     },
-  }],
-  'img',
-  'ext',
-  'devServer',
-  'misc',
-  'dev',
-  'prod',
-]
+  },
+  img: true,
+  ext: true,
+  devServer: true,
+  misc: true,
+  dev: true,
+  prod: true,
+}
+
 const variants = [
   'cjs',
   'umd',
 ]
 
-let cwd = __dirname
-
-module.exports = run( { variants, modules, cwd }, ( config ) => {
+module.exports = webpackHelper( {
+  variants,
+  modules,
+  cwd,
+  webpack
+}, ( config ) => {
   config
     .entry( 'vue-splitter-pane' )
     .add( './src/index.ts' )
 
   config.output
     .path( path.resolve( __dirname, './dist' ) );
-
 } )
 

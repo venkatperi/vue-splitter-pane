@@ -27,6 +27,9 @@ const App = Vue.extend( {
       sizeA: 0,
       sizeB: 0,
       sizeD: 0,
+      thicknessA: 9,
+      thicknessB: 9,
+      thicknessC: 9,
     }
   },
 

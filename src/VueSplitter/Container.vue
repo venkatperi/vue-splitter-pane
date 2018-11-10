@@ -40,8 +40,8 @@
     <handle :xClass="xClass"
             :split="split"
             :handle-size="handleSize"
-            @mousedown.native="onMouseDown"
-            @dblclick.native="onDblClick" />
+            @mousedown.native.stop.prevent="onMouseDown"
+            @dblclick.native.stop.prevent="onDblClick" />
 
     <pane :position="positionTwo" ref="two" :xClass="xClass" :split="split">
       <slot :name="positionTwo" />

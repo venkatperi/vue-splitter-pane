@@ -60,7 +60,6 @@
 
     const debounce = require('lodash.debounce')
 
-
     @Component({
         name: 'VueSplitter',
         components: {Handle, Pane},

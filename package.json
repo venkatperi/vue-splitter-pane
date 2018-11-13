@@ -25,6 +25,7 @@
     "@types/lodash.kebabcase": "^4.1.4",
     "@types/node": "^10.12.2",
     "@types/webpack-chain": "^4.8.1",
+    "@venkatperi/vue-shims": "^1.0.0",
     "@venkatperi/webpack-helper": "^1.2.4",
     "av-ts": "^0.10.0",
     "copy-webpack-plugin": "^4.6.0",

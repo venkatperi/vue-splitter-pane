@@ -51,6 +51,8 @@
 </template>
 
 <script lang="ts">
+    /// <reference types="@venkatperi/vue-shims"/>
+
     import { Component, Lifecycle, p, Prop, Watch } from "av-ts";
     import Vue from 'vue'
     import resize from 'vue-resize-directive'

@@ -4,18 +4,39 @@
 <head>
   <meta charset="utf-8">
   <title>vue-splitter demo</title>
-  <!--<link rel="stylesheet" href="../dist/umd/vue-splitter-pane.css">-->
+  <link type="text/css"
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+  <link type="text/css"
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
   <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
 <script src="https://unpkg.com/vue@2.2.6"></script>
+<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/vue-splitter-pane@latest"></script>
 
 <div id="app" class="components-container">
 
   <template>
-    <vue-splitter-v initial-size="40%" @resize="resizeA" x-class="demo">
+    <div id="header">
+      <div class="props">
+        <label for="input1">Handle Thickness</label>
+        <b-form-select v-model="thickness"
+                       id="input1"
+                       :options="options"
+                       class="mb-3"
+                       size="sm" />
+      </b-form-group>
+      </div>
+    </div>
+    <vue-splitter-v initial-size="40%"
+                    @resize="resizeA"
+                    x-class="demo"
+                    :handle-size="thickness">
       <template slot="left">
         <div class="pane-outer">
           <div class="pane">
@@ -25,10 +46,11 @@
         </div>
       </template>
       <template slot="right">
-        <vue-splitter-h :handle-size="11">
+        <vue-splitter-h :handle-size="thickness">
           <template slot="top">
-            <vue-splitter-v @resize="resizeB" initial-size="60%"
-                            :handle-size="3">
+            <vue-splitter-v @resize="resizeB"
+                            initial-size="60%"
+                            :handle-size="thickness">
 
               <template slot="left">
                 <div class="pane-outer">
@@ -50,8 +72,9 @@
 
           <template slot="bottom">
             <vue-splitter-v v-on:resize="resizeD"
-                             :throttle="20"
-                             initial-size="200px">
+                            :throttle="20"
+                            :handle-size="thickness"
+                            initial-size="200px">
 
               <template slot="left">
                 <div class="pane-outer">

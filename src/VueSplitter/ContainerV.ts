@@ -19,9 +19,9 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 //  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
 import { Component } from "av-ts"
 import VueSplitter from "./Container.vue";
-
 
 @Component({
     name: "VueSplitterV",

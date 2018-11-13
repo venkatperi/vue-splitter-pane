@@ -30,6 +30,15 @@ const App = Vue.extend( {
       thicknessA: 9,
       thicknessB: 9,
       thicknessC: 9,
+
+      thickness: 9,
+      options: [
+        { value: 3, text: '3' },
+        { value: 5, text: '5' },
+        { value: 7, text: '7' },
+        { value: 9, text: '9' },
+        { value: 11, text: '11' },
+      ]
     }
   },
 

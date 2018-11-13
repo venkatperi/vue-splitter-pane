@@ -38,20 +38,20 @@ const App = Vue.extend( {
         { value: 7, text: '7' },
         { value: 9, text: '9' },
         { value: 11, text: '11' },
-      ]
+      ],
     }
   },
 
   methods: {
-    resizeA([a,b]) {
+    resizeA( [[a, b]] ) {
       this.sizeA = `${a}px x ${b}px`
     },
-    resizeB([a,b]) {
+    resizeB( [[a, b]] ) {
       this.sizeB = `${a}px x ${b}px`
     },
-    resizeD([a,b]) {
+    resizeD( [[a, b]] ) {
       this.sizeD = `${a}px x ${b}px`
-    }
+    },
   },
 } )
 
